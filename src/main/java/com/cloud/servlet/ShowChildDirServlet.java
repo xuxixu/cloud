@@ -12,7 +12,7 @@ import org.apache.hadoop.fs.FileStatus;
 
 import com.cloud.dao.HdfsDao;
 
-@WebServlet("/ShowChildDirServlet")
+@WebServlet("/showChildDirServlet")
 public class ShowChildDirServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

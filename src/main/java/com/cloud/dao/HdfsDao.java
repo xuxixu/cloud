@@ -32,7 +32,7 @@ public class HdfsDao {
 //  根据用户和文件名判断文件是否存在
 	public static boolean FileIfExist(String user, String filename) throws IOException {
 		init();
-		String fileName = "/Mycloud" + user + "/" + filename;// 你的文件路径，没有就显示不存在
+		String fileName = "/Mycloud/" + user + "/" + filename;// 你的文件路径，没有就显示不存在
 		FileSystem fs = FileSystem.get(conf);
 		if (fs.exists(new Path(fileName))) {
 			System.out.println("文件存在");
@@ -47,7 +47,7 @@ public class HdfsDao {
 	public static void mkPersonalDir(String username) throws IOException {
 		init();
 		FileSystem fs = FileSystem.get(URI.create(hdfsPath), conf);
-		String upremote = "/Mycloud" + username;
+		String upremote = "/Mycloud/" + username;
 		Path a = new Path(upremote);
 		fs.mkdirs(a);
 		System.out.println("创建个人目录成功");
@@ -57,7 +57,7 @@ public class HdfsDao {
 	public static void mkChildDir(String filePath) throws IOException {
 		init();
 		FileSystem fs = FileSystem.get(URI.create(hdfsPath), conf);
-		String upremote = "/Mycloud" + filePath;
+		String upremote = "/Mycloud/" + filePath;
 		Path a = new Path(upremote);
 		fs.mkdirs(a);
 		System.out.println("创建目录成功");
@@ -68,14 +68,14 @@ public class HdfsDao {
 		init();
 //		Configuration conf = new Configuration();
 		FileSystem fs = FileSystem.get(URI.create(hdfsPath), conf);
-		String filePath = "/Mycloud" + deletePath;
+		String filePath = "/Mycloud/" + deletePath;
 		fs.deleteOnExit(new Path(filePath));
 		fs.close();
 	}
 	// 遍历用户目录文件与目录
 	public static FileStatus[] ShowFiles(String username) throws IOException {
 		init();
-		String filePath = "/Mycloud" + username;
+		String filePath = "/Mycloud/" + username;
 		FileSystem fs = FileSystem.get(URI.create(hdfsPath), conf);
 		FileStatus[] list = fs.listStatus(new Path(filePath));
 		fs.close();
@@ -84,7 +84,7 @@ public class HdfsDao {
 	// 遍历用户目录下的子文件夹
 	public static FileStatus[] ShowDirFiles(String filePath) throws IOException {
 		init();
-		String filePath1 = "/Mycloud" + filePath + "/";
+		String filePath1 = "/Mycloud/" + filePath + "/";
 		FileSystem fs = FileSystem.get(URI.create(hdfsPath), conf);
 		FileStatus[] list = fs.listStatus(new Path(filePath1));
 //		if (list != null) {
@@ -99,7 +99,7 @@ public class HdfsDao {
 	public static InputStream down(String cloudPath) throws IOException, InterruptedException, URISyntaxException {
 		// 1获取对象
 		init();
-		String filePath1 = "/Mycloud" + cloudPath + "/";
+		String filePath1 = "/Mycloud/" + cloudPath + "/";
 		FileSystem fs = FileSystem.get(URI.create(hdfsPath), conf);
 		FSDataInputStream in = fs.open(new Path(filePath1));
 		return in;
@@ -107,7 +107,7 @@ public class HdfsDao {
 	public static void upload(String fileName,InputStream in) throws IllegalArgumentException, IOException, InterruptedException, URISyntaxException{
 		init();
 		FileSystem fs = FileSystem.get(URI.create(hdfsPath), conf);
-		FSDataOutputStream out = fs.create(new Path("/Mycloud" + fileName + "/"));
+		FSDataOutputStream out = fs.create(new Path("/Mycloud/" + fileName + "/"));
 //		FileInputStream in = new FileInputStream("H:/新建.txt");
 		IOUtils.copy(in, out); 
 		fs.close();
@@ -117,8 +117,8 @@ public class HdfsDao {
 	public static void ReName(String path1,String path2) throws IOException {
 		// 1获取对象
 		init();
-		String filePath1 = "/Mycloud" + path1 + "/";
-		String filePath2 = "/Mycloud" + path2 + "/";
+		String filePath1 = "/Mycloud/" + path1 + "/";
+		String filePath2 = "/Mycloud/" + path2 + "/";
 
 		FileSystem fs = FileSystem.get(URI.create(hdfsPath), conf);
 		boolean re = fs.rename(new Path(filePath1), new Path(filePath2));

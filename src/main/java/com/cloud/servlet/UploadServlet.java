@@ -3,6 +3,7 @@ package com.cloud.servlet;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
+import java.util.Arrays;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -17,7 +18,7 @@ import org.apache.hadoop.fs.FileStatus;
 
 import com.cloud.dao.HdfsDao;
 
-@WebServlet("/UploadServlet")
+@WebServlet("/uploadServlet")
 @MultipartConfig
 public class UploadServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
@@ -43,7 +44,7 @@ public class UploadServlet extends HttpServlet{
 			if(a.equals(username)) {
 				FileStatus[] documentList = HdfsDao.ShowFiles(a);
 				request.setAttribute("documentList", documentList);
-				System.out.println("得到list数据"+documentList);
+				System.out.println("得到list数据"+ Arrays.toString(documentList));
 				request.getRequestDispatcher("index.jsp").forward(request, response);
 			}else {
 				response.sendRedirect(request.getHeader("Referer"));

@@ -1,6 +1,7 @@
 package com.cloud.servlet;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +15,7 @@ import org.apache.hadoop.fs.FileStatus;
 import com.cloud.dao.HdfsDao;
 
 
-@WebServlet("/MkdirServlet")
+@WebServlet("/mkdirServlet")
 public class MkDirServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -34,7 +35,7 @@ public class MkDirServlet extends HttpServlet {
 		if(a.equals(username)) {
 			FileStatus[] documentList = HdfsDao.ShowFiles(a);
 			request.setAttribute("documentList", documentList);
-			System.out.println("得到list数据"+documentList);
+			System.out.println("得到list数据"+ Arrays.toString(documentList));
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}else {
 			response.sendRedirect(request.getHeader("Referer"));

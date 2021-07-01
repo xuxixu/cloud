@@ -20,7 +20,7 @@
 <body>
 	<div class="dowebok" id="dowebok">
 		<div class="form-container sign-up-container">
-			<form action="RegistServlet" method="post">
+			<form action="registServlet" method="post">
 				<h1>注册</h1>
 				<div class="social-container">
 					<a href="#" class="social"><i class="fa fa-qq"></i></a> 
@@ -36,7 +36,7 @@
 			</form>
 		</div>
 		<div class="form-container sign-in-container">
-			<form action="LoginServlet" method="post">
+			<form action="loginServlet" method="post">
 				<h1>登录</h1>
 				<div class="social-container">
 					<a href="#" class="social"><i class="fa fa-qq"></i></a> <a href="#"

@@ -1,6 +1,7 @@
 package com.cloud.servlet;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +14,7 @@ import org.apache.hadoop.fs.FileStatus;
 
 import com.cloud.dao.HdfsDao;
 
-@WebServlet("/MoveServlet")
+@WebServlet("/moveServlet")
 
 public class MoveServlet extends HttpServlet {
 
@@ -38,7 +39,7 @@ public class MoveServlet extends HttpServlet {
 			if (pastePath.equals(username)) {
 				FileStatus[] documentList = HdfsDao.ShowFiles(pastePath);
 				request.setAttribute("documentList", documentList);
-				System.out.println("得到list数据" + documentList);
+				System.out.println("得到list数据" + Arrays.toString(documentList));
 				request.getRequestDispatcher("index.jsp").forward(request, response);
 			} else {
 				System.out.println("从定向了1");
@@ -54,7 +55,7 @@ public class MoveServlet extends HttpServlet {
 
 				FileStatus[] documentList = HdfsDao.ShowFiles(username);
 				request.setAttribute("documentList", documentList);
-				System.out.println("得到list数据" + documentList);
+				System.out.println("得到list数据" + Arrays.toString(documentList));
 				request.getRequestDispatcher("index.jsp").forward(request, response);
 
 		}

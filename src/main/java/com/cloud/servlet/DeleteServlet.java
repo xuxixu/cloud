@@ -1,6 +1,7 @@
 package com.cloud.servlet;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.hadoop.fs.FileStatus;
 
 import com.cloud.dao.HdfsDao;
-@WebServlet("/DeleteServlet")
+@WebServlet("/deleteServlet")
 public class DeleteServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -30,7 +31,7 @@ public class DeleteServlet extends HttpServlet{
 		if(a.equals(username)) {
 			FileStatus[] documentList = HdfsDao.ShowFiles(a);
 			request.setAttribute("documentList", documentList);
-			System.out.println("得到list数据"+documentList);
+			System.out.println("得到list数据"+ Arrays.toString(documentList));
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}else {
 			response.sendRedirect(request.getHeader("Referer"));

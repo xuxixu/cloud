@@ -14,7 +14,7 @@ import com.cloud.dao.HdfsDao;
 import com.cloud.pojo.User;
 import com.cloud.dao.UserDao;
 
-@WebServlet("/LoginServlet")
+@WebServlet("/loginServlet")
 public class LoginServlet extends HttpServlet {
  
 	private static final long serialVersionUID = 1L;

@@ -32,7 +32,7 @@
 		比如hdfs://localhost:9000/user/wangyang/user/wy/dir1/
 		你点击了dir2，你就只需要得到hdfs://localhost:9000/user/wangyang/user/wy/+你点击的路径dir2
 		*/
-		result = list[0].getPath().getParent().toString().substring(40);
+		result = list[0].getPath().getParent().toString().substring(20);
 	} else {
 		result = "";
 	}
@@ -50,12 +50,12 @@
 
 		<a class="nav-link col-3">当前路径：<%=thisPath%></a>
 		<form id="frm" class="form-inline my-2 my-lg-0"
-			action="MkdirServlet?thisPath=<%=thisPath%>" method="post">
+			action="mkdirServlet?thisPath=<%=thisPath%>" method="post">
 			<input class="form-control mr-sm-2 col-5" type="text"
 				placeholder="输入文件夹名称" name="mkdir">
 			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">创建</button>
 		</form>
-		<form action="UploadServlet?thisPath=<%=thisPath%>" method="post"
+		<form action="uploadServlet?thisPath=<%=thisPath%>" method="post"
 			enctype="multipart/form-data">
 			<div class="row">
 
@@ -116,7 +116,7 @@
 						+ list[i].getPath().getName() + "'><i class='fa fa-download' aria-hidden='true'></i>下载</a>");
 					}
 					%> <a role="button" class="btn btn-outline-danger"
-					href="DeleteServlet?thisPath=<%=thisPath%>&fileName=<%=list[i].getPath().getName()%>"><i
+					href="deleteServlet?thisPath=<%=thisPath%>&fileName=<%=list[i].getPath().getName()%>"><i
 						class="fa fa-trash-o" aria-hidden="true"></i></a> <%
 		 	 System.out.println("html:" + request.getAttribute("cut"));
 			 if (cut == null||cut.equals("null")) {
@@ -145,7 +145,7 @@
 				<a role="button" class="btn btn-outline-secondary col-6 mr-1"
 					href="javascript:history.go(-1);location.reload()"><i
 					class="fa fa-arrow-left" aria-hidden="true"></i>返回上一级</a> <a
-					class="btn btn-danger col-4" href="LogoutServlet" role="button">注销登录</a>
+					class="btn btn-danger col-4" href="logoutServlet" role="button">注销登录</a>
 			</div>
 
 		</div>
