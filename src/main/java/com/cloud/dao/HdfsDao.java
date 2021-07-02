@@ -1,5 +1,6 @@
 package com.cloud.dao;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 //import java.util.Scanner;
@@ -108,8 +109,9 @@ public class HdfsDao {
 		init();
 		FileSystem fs = FileSystem.get(URI.create(hdfsPath), conf);
 		FSDataOutputStream out = fs.create(new Path("/Mycloud/" + fileName + "/"));
-//		FileInputStream in = new FileInputStream("H:/新建.txt");
-		IOUtils.copy(in, out); 
+//		in = new FileInputStream("c.txt");
+//		System.out.println(in);
+		IOUtils.copy(in, out);
 		fs.close();
 		
 	}
