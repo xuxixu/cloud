@@ -56,6 +56,7 @@ public class UserDao {
 		return true;
 	}
 
+	//更新用户
 	public boolean updataUser(String username, String psw) {
 
 		String sql = "UPDATE panuser SET password = ? WHERE user = ? ";
@@ -63,6 +64,22 @@ public class UserDao {
 		int i=0;
 		try {
 			i = queryRunner.update(sql,psw,username);
+		} catch (SQLException throwables) {
+			throwables.printStackTrace();
+		}
+		if(i==0) return false;
+		return true;
+	}
+
+	//注销用户
+
+	public boolean deleteUser(String username, String psw) {
+
+		String sql = "delete panuser WHERE user = ? ";
+		QueryRunner queryRunner = new QueryRunner(C3P0Utils.getDataSource());
+		int i=0;
+		try {
+			i = queryRunner.update(sql,username);
 		} catch (SQLException throwables) {
 			throwables.printStackTrace();
 		}
