@@ -26,16 +26,16 @@
 	} else {
 		thisPath = (String) request.getAttribute("thisPath");
 	}
-	String result;//用户当前目录
-	if (list.length != 0) {
-		/*不知道怎么获取当前目录的路径，所以找到他一个子目录的父目录，前面一串路径都是一样的
-		比如hdfs://localhost:9000/user/wangyang/user/wy/dir1/
-		你点击了dir2，你就只需要得到hdfs://localhost:9000/user/wangyang/user/wy/+你点击的路径dir2
-		*/
-		result = list[0].getPath().getParent().toString().substring(20);
-	} else {
-		result = "";
-	}
+//	String result;//用户当前目录
+//	if (list.length != 0) {
+//		/*不知道怎么获取当前目录的路径，所以找到他一个子目录的父目录，前面一串路径都是一样的
+//		比如hdfs://localhost:9000/user/wangyang/user/wy/dir1/
+//		你点击了dir2，你就只需要得到hdfs://localhost:9000/user/wangyang/user/wy/+你点击的路径dir2
+//		*/
+//		result = list[0].getPath().getParent().toString().substring(20);
+//	} else {
+//		result = "";
+//	}
 	%>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light mt-5">
 		<a class="navbar-brand" href="#">bobo<i
@@ -109,10 +109,10 @@
 					String cut=(String)request.getAttribute("cut");
 					if (list[i].isDir())//DocumentServlet
 					{
-						out.print("<a role='button' class='btn btn-outline-success' href='ShowChildDirServlet?filePath=" + result + "/"
+						out.print("<a role='button' class='btn btn-outline-success' href='showChildDirServlet?filePath=" + thisPath + "/"
 						+ list[i].getPath().getName() + "&cut=" + cut + "'><i class='fa fa-sign-in mr-1'></i>进入</a>");
 					} else {
-						out.print("<a role='button' class='btn btn-outline-primary' href='DownloadServlet?result=" + result + "&fileName="
+						out.print("<a role='button' class='btn btn-outline-primary' href='downloadServlet?result=" + thisPath + "&fileName="
 						+ list[i].getPath().getName() + "'><i class='fa fa-download' aria-hidden='true'></i>下载</a>");
 					}
 					%> <a role="button" class="btn btn-outline-danger"
@@ -120,10 +120,10 @@
 						class="fa fa-trash-o" aria-hidden="true"></i></a> <%
 		 	 System.out.println("html:" + request.getAttribute("cut"));
 			 if (cut == null||cut.equals("null")) {
-			 	out.print("<a role='button' class='btn btn-outline-secondary' href='MoveServlet?thisPath=" + thisPath + "&fileName="
+			 	out.print("<a role='button' class='btn btn-outline-secondary' href='moveServlet?thisPath=" + thisPath + "&fileName="
 			 	+ list[i].getPath().getName() + "'><i class='fa fa-scissors'></i> </a>");
 			 } else if (!cut.equals("null")&&cut != null && list[i].isDir()) {
-			 	out.print("<a role='button' class='btn btn-outline-secondary' href='MoveServlet?pastePath=" + thisPath
+			 	out.print("<a role='button' class='btn btn-outline-secondary' href='moveServlet?pastePath=" + thisPath
 			 	+ "&pasteName=" + list[i].getPath().getName() + "&cut=" + request.getAttribute("cut") + "'>粘贴</a>");
 			
 		 }
@@ -143,7 +143,7 @@
 		<div class="col-3 offset-9">
 			<div class="row">
 				<a role="button" class="btn btn-outline-secondary col-6 mr-1"
-					href="javascript:history.go(-1);location.reload()"><i
+					href="javascript:history.go(-1)"><i
 					class="fa fa-arrow-left" aria-hidden="true"></i>返回上一级</a> <a
 					class="btn btn-danger col-4" href="logoutServlet" role="button">注销登录</a>
 			</div>
