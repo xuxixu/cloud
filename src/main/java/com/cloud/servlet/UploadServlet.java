@@ -35,6 +35,8 @@ public class UploadServlet extends HttpServlet{
         String a=(String) request.getParameter("thisPath");
 		String upPath=a+"/"+ fileName;
         InputStream in = part.getInputStream();
+		System.out.println("asndksjadaksbdaksdbakjsdbajdbakjsdbakj");
+		System.out.println(in);
         System.out.println(disposition.substring(disposition.lastIndexOf("=")+2,disposition.length()-1));
         try {
 			HdfsDao.upload(upPath, in);

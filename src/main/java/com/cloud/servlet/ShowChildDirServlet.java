@@ -28,6 +28,7 @@ public class ShowChildDirServlet extends HttpServlet {
 		request.setAttribute("cut", cut);
 		FileStatus[] documentList = HdfsDao.ShowDirFiles(filePath);
 		request.setAttribute("documentList", documentList);
+		System.out.println(documentList);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 

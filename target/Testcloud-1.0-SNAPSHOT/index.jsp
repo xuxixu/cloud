@@ -81,7 +81,6 @@
 				<th scope="col">序号</th>
 				<th scope="col">文件名</th>
 				<th scope="col">属性</th>
-				<th scope="col">大小</th>
 				<th scope="col">可执行操作</th>
 			</tr>
 		</thead>
@@ -103,7 +102,6 @@
 				%>
 				<td><%=(list[i].isDir() ? "<i class='fa fa-folder-open mr-1' aria-hidden='true'></i>目录"
 		: "<i class='fa fa-file-text-o mr-1' aria-hidden='true'></i>文件")%></td>
-				<td><%=(list[i].getLen())%></td>
 				<td>
 					<%
 					String cut=(String)request.getAttribute("cut");

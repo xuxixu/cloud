@@ -109,10 +109,11 @@ public class HdfsDao {
 		init();
 		FileSystem fs = FileSystem.get(URI.create(hdfsPath), conf);
 		FSDataOutputStream out = fs.create(new Path("/Mycloud/" + fileName + "/"));
-//		in = new FileInputStream("c.txt");
-//		System.out.println(in);
-		IOUtils.copy(in, out);
-		fs.close();
+		byte[] b = new byte[1024*1024];
+		int read = 0;
+		while((read = in.read(b)) > 0){
+			out.write(b, 0, read);
+		}
 		
 	}
 //	移动或者重命名:path1原文件路径，path2粘贴路径
