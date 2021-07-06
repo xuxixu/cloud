@@ -45,7 +45,7 @@
 				</div>
 				<span>使用您的帐号</span> <input type="text" placeholder="用户名" name="user">
 				<input type="password" placeholder="密码" name="password"> <a
-					href="#">忘记密码？</a>
+					href="password.jsp">忘记密码？</a>
 				<button type="submit">登录</button>
 			</form>
 		</div>
